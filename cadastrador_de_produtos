@@ -1,0 +1,48 @@
+import pyautogui
+import pandas
+import time
+
+#passo 1 abrir o navegador
+pyautogui.press("win")
+pyautogui.write("chrome")
+time.sleep(1)
+pyautogui.press("enter")
+time.sleep(1)
+#passo 2 sera abrir op site desejado
+pyautogui.write("https://dlp.hashtagtreinamentos.com/python/intensivao/login")
+pyautogui.press("enter")
+time.sleep(1)
+pyautogui.click(777, 452)
+pyautogui.write("miguelmendes1147@gmail.com")
+pyautogui.press("tab")
+pyautogui.write("Carapato147$")
+pyautogui.press("tab")
+pyautogui.press("enter")
+#passo 3 sera abrir a base de dados
+tabela=pandas.read_csv("produtos.csv")
+print(tabela)
+#passo 4 sera cadastrar os produtos dentro do site
+for linha in tabela.index:
+    pyautogui.click(788, 296)
+    pyautogui.write(str(tabela.loc[linha,"codigo"]))
+    pyautogui.press("tab")
+    pyautogui.write(str(tabela.loc[linha,"marca"]))
+    
+    pyautogui.press("tab")
+    pyautogui.write(str(tabela.loc[linha,"tipo"]))
+
+    pyautogui.press("tab")
+    pyautogui.write(str(tabela.loc[linha,"categoria"]))
+    pyautogui.press("tab")
+    pyautogui.write(str(tabela.loc[linha,"preco_unitario"]))
+
+    pyautogui.press("tab")
+    pyautogui.write(str(tabela.loc[linha,"custo"]))
+    pyautogui.press("tab")
+    obs = tabela.loc[linha, "obs"]
+    if not pandas.isna(obs):
+        pyautogui.write(str(tabela.loc[linha,"obs"]))
+    pyautogui.press("tab")
+    pyautogui.press("enter")
+    pyautogui.scroll(5000)
+   
